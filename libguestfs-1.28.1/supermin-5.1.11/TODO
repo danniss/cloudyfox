@@ -1,0 +1,15 @@
+Store %post scripts
+-------------------
+
+Can we get the %post scripts and store them in a directory in the
+appliance?
+
+
+Some features of supermin 4 which were cut in supermin 5
+--------------------------------------------------------
+
+ - Frugalware / pacman-g2: requires 'pactree' tool to be packaged
+
+ - write an initrd file (ie. '-f cpio')
+
+ - --user/--group options

@@ -1,0 +1,120 @@
+supermin - Tool for creating supermin appliances
+by Richard W.M. Jones (rjones@redhat.com)
+http://people.redhat.com/~rjones/supermin
+----------------------------------------------------------------------
+
+Supermin is a tool for building supermin appliances.  These are tiny
+appliances [similar to virtual machines], usually around 100KB in
+size, which get fully instantiated on-the-fly in a fraction of a
+second when you need to boot one of them.
+
+A complete description is in the supermin(1) man page.
+
+IMPORTANT NOTE FOR USERS OF SUPERMIN 4.x: supermin 5.x is a rewrite of
+  supermin 4.  It is compatible at a high level with supermin 4 /
+  febootstrap 3, but requires some command line adjustments.
+
+IMPORTANT NOTE FOR USERS OF FEBOOTSTRAP 3.x:
+  supermin 4.x is just an evolution of febootstrap 3.x (really we just
+  renamed it). The previous febootstrap program is now called
+  supermin. The previous febootstrap-supermin-helper program is now
+  called supermin-helper. Apart from that they are identical, although
+  they will evolve and add features over time.
+
+IMPORTANT NOTE FOR USERS OF FEBOOTSTRAP 2.x:
+  febootstrap 3.x is a complete rewrite.  febootstrap 2.x could only
+  build Fedora distributions.  This version can build many varieties
+  of Linux distros.  3.x only builds supermin appliances, it does not
+  build chroots.  3.x does not build cross-distro, cross-release or
+  cross-architecture systems.  If you want febootstrap 2.x, please use
+  the 'febootstrap-2.x' branch from the git repository.
+
+Requirements
+------------
+
+  ocaml
+
+  ocaml findlib ("ocamlfind" program)
+
+  perldoc
+    - This is just used to generate the manpage.
+
+  static libc
+
+  bash
+
+  gcc
+
+  gawk
+
+  libcom_err
+  libext2fs
+  /sbin/mke2fs
+    - These are part of e2fsprogs.
+
+For Fedora/RHEL:
+
+  rpm
+  yumdownloader (from yum-utils)
+
+For Debian/Ubuntu:
+
+  dpkg
+  apt-get
+
+Optional
+--------
+
+These are only needed if you plan to boot the supermin appliances you
+are building:
+
+  qemu >= 0.13
+  kernel >= 2.6.36
+
+  zlib (statically linked) - if your kernel uses gzipped modules
+
+  xz (statically linked) - if your kernel uses xz-compressed modules
+
+Building and installing
+-----------------------
+
+If you're cloning this from git the first time, do:
+
+  ./bootstrap
+  ./autogen.sh
+
+For normal builds, and building from the tarball:
+
+  ./configure
+  make
+
+You can run supermin without installing:
+
+  ./src/supermin --help
+
+To install the software:
+
+  sudo make install
+
+Tests
+-----
+
+  make check
+
+Note that the tests require a network connection.  If you don't
+have a network connection (eg. for distro package building) then
+try doing:
+
+  ./configure --disable-network-tests
+
+Examples
+--------
+
+See the examples/ subdirectory.
+
+Feedback and bugs
+-----------------
+
+Send feedback to libguestfs@redhat.com.  You can file bugs in
+https://bugzilla.redhat.com/ (under "Fedora", "supermin")
+
